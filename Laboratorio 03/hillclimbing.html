@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algoritmos Evolutivos</title>
+  <link rel="icon" href="img/favicon.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+  <header class="sticky top-0 z-50 w-full py-4 backdrop-blur-md bg-white/80 shadow">
+    <a class="container mx-auto px-4 flex items-center" href="index.html">
+      <div class="mr-4">
+        <img src="img/logo.png" alt="Logo UNS" class="h-20 mr-5" />
+      </div>
+      <div class="text-left">
+        <h1 class="text-lg md:text-xl font-semibold text-gray-700 mb-1">
+          <span class="md:hidden">UNS</span>
+          <span class="hidden md:inline">UNIVERSIDAD NACIONAL DEL SANTA</span>
+        </h1>
+        <h2 class="text-base md:text-lg font-medium text-gray-600">
+          FACULTAD DE INGENIERÍA
+        </h2>
+        <h3 class="text-sm md:text-base text-gray-500">
+          <span class="md:hidden">EPISI</span>
+          <span class="hidden md:inline">Escuela Profesional de Ingeniería de Sistemas e Informática</span>
+        </h3>
+      </div>
+    </a>
+  </header>
+
+  <main class="flex-grow flex items-center justify-center px-4 py-4">
+    <div class="w-full max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-gray-800 my-12 text-center">
+        Hill Climbing
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-2xl font-semibold text-gray-800 my-8">
+            ¿En que consiste el algoritmo?
+          </h2>
+          <p class="text-gray-700 mb-8">
+            El algoritmo de ascenso de colinas es una técnica de <b>optimización</b> en la que se busca una solución a
+            un problema mediante la mejora incremental de una solución actual
+          </p>
+          <p class="text-gray-700 mb-8">
+            Se basa en explorar el espacio de soluciones, moviéndose hacia aquellos estados vecinos que ofrecen mejores
+            resultados hasta alcanzar un óptimo local o máximo local.
+          </p>
+          <div class="flex justify-center items-center mt-4">
+            <a href="img/hillclimbing.png" data-fancybox="gallery" data-caption="Infografía Algoritmo Hill Climbing">
+              <img src="img/hillclimbing.png" alt="Infografía Algoritmo Hill Climbing" class="w-full max-w-md" />
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-2xl font-semibold text-gray-800 my-8">
+            Proceso del Algoritmo Genético
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:bg-blue-100 transition duration-300">
+              <h3 class="text-xl font-semibold text-blue-700 mb-4">
+                1. Definir espacio de búsqueda
+              </h3>
+              <p class="text-gray-700">
+                Establecer los límites o rango donde se buscarán las posibles soluciones al problema.
+              </p>
+            </div>
+            <div class="bg-green-50 p-6 rounded-lg shadow-md hover:bg-green-100 transition duration-300">
+              <h3 class="text-xl font-semibold text-green-700 mb-4">
+                2. Definir función objetivo
+              </h3>
+              <p class="text-gray-700">
+                Crear una función que evalúe qué tan buena es una solución (ejemplo: maximizar ganancias o minimizar
+                costos).
+              </p>
+            </div>
+            <div class="bg-yellow-50 p-6 rounded-lg shadow-md hover:bg-yellow-100 transition duration-300">
+              <h3 class="text-xl font-semibold text-yellow-700 mb-4">
+                3. Seleccionar estado inicial
+              </h3>
+              <p class="text-gray-700">
+                Elegir una solución inicial al azar o mediante un método heurístico dentro del espacio de búsqueda.
+              </p>
+            </div>
+            <div class="bg-purple-50 p-6 rounded-lg shadow-md hover:bg-purple-100 transition duration-300">
+              <h3 class="text-xl font-semibold text-purple-700 mb-4">
+                4. Evaluar solución actual
+              </h3>
+              <p class="text-gray-700">
+                Calcular el valor de la función objetivo para la solución actual y determinar su calidad.
+              </p>
+            </div>
+            <div class="bg-red-50 p-6 rounded-lg shadow-md hover:bg-red-100 transition duration-300">
+              <h3 class="text-xl font-semibold text-red-700 mb-4">
+                5. Generar soluciones vecinas
+              </h3>
+              <p class="text-gray-700">
+                Crear soluciones cercanas a la actual mediante pequeños cambios (ejemplo: ajustar parámetros).
+              </p>
+            </div>
+            <div class="bg-indigo-50 p-6 rounded-lg shadow-md hover:bg-indigo-100 transition duration-300">
+              <h3 class="text-xl font-semibold text-indigo-700 mb-4">
+                6. Seleccionar mejor vecino
+              </h3>
+              <p class="text-gray-700">
+                Evaluar todos los vecinos con la función objetivo y elegir el que tenga el mejor valor.
+              </p>
+            </div>
+            <div class="bg-pink-50 p-6 rounded-lg shadow-md hover:bg-pink-100 transition duration-300">
+              <h3 class="text-xl font-semibold text-pink-700 mb-4">
+                7. Actualizar solución
+              </h3>
+              <p class="text-gray-700">
+                Si el mejor vecino es superior a la solución actual, reemplazarla. Si no, finalizar el algoritmo.
+              </p>
+            </div>
+            <div class="bg-teal-50 p-6 rounded-lg shadow-md hover:bg-teal-100 transition duration-300">
+              <h3 class="text-xl font-semibold text-teal-700 mb-4">
+                8. Criterio de parada
+              </h3>
+              <p class="text-gray-700">
+                El algoritmo termina cuando no se encuentran mejorías en los vecinos, retornando la mejor solución
+                encontrada.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-md mt-8 relative">
+        <div class="mt-8">
+          <h3 class="text-2xl font-semibold text-gray-800 my-8">
+            Aplicaciones del Hill Climbing
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+              <h4 class="text-lg font-semibold text-blue-700 mb-4">
+                Inteligencia Artificial
+              </h4>
+              <p class="text-gray-600">
+                Entrenamiento de modelos y ajuste de hiperparámetros en algoritmos de ML.
+              </p>
+            </div>
+            <div class="bg-orange-50 p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+              <h4 class="text-lg font-semibold text-orange-700 mb-4">
+                Finanzas y Trading
+              </h4>
+              <p class="text-gray-600">
+                Optimización de carteras de inversión o estrategias de trading algorítmico.
+              </p>
+            </div>
+            <div class="bg-green-50 p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+              <h3 class="text-lg font-semibold text-green-700 mb-4">
+                Optimización de Rutas
+              </h3>
+              <p class="text-gray-600">
+                Mejora de rutas de transporte, logística y problemas como el del vendedor viajero (TSP).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-md mt-8 relative">
+        <h1 class="text-2xl font-semibold text-gray-900 my-8">
+          Ejemplos en Python
+        </h1>
+        <h2 class="font-semibold text-gray-800 my-8">
+          Selección de Franjas horarias
+        </h2>
+        <p class="text-left text-gray-600 mb-5">
+          Un estudiante tiene disponibles 10 franjas horarias libres durante la semana, cada una con una duración y un
+          nivel estimado de productividad (del 1 al 10). El objetivo es seleccionar las mejores franjas para maximizar
+          su productividad semanal total, pero con una restricción: no debe estudiar más de 15 horas en total.
+        </p>
+        <p class="text-left text-gray-600 mb-8">
+          Implementa un algoritmo de hill climbing que, partiendo de una selección aleatoria de franjas horarias, busque
+          mejorar la productividad total sin superar el límite de horas. Usa Pandas para representar las franjas y NumPy
+          para mutar la solución.
+        </p>
+
+        <!-- Bloque 1 -->
+        <div class="code-section">
+          <div class="mb-6 relative">
+            <div class="flex justify-between items-center mb-4">
+              <div class="flex items-center space-x-2 text-gray-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+                </svg>
+                <span class="font-semibold text-lg text-gray-600">Python</span>
+              </div>
+
+              <div class="flex space-x-4">
+                <button class="copy-code" title="Copiar código" class="text-gray-700 hover:text-gray-900">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="h-6 w-6 text-gray-600">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                  </svg>
+                </button>
+
+                <div class="copied-message hidden text-gray-500 mt-2 text-sm font-semibold">
+                  ¡Copiado!
+                </div>
+
+                <button class="run-code" title="Ejecutar código" class="text-green-800 hover:text-green-900">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="h-6 w-6 text-green-700">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <pre class="code-block overflow-x-auto">
+<code class="language-python">
+import numpy as np
+import pandas as pd
+import random
+
+# 1. Crear el dataframe con las franjas horarias
+def crear_franjas_horarias(n=10):
+    """Crea un dataframe con n franjas horarias aleatorias"""
+    horas = np.random.uniform(1, 3, n).round(1)  # Duración entre 1 y 3 horas
+    productividad = np.random.randint(1, 11, n)  # Productividad entre 1 y 10
+    franjas = pd.DataFrame({
+        'franja': [f'F{i+1}' for i in range(n)],
+        'horas': horas,
+        'productividad': productividad
+    })
+    return franjas
+
+# 2. Función para generar solución inicial aleatoria
+def solucion_inicial(franjas, max_horas=15):
+    """Genera una solución inicial aleatoria que no exceda las horas máximas"""
+    while True:
+        seleccion = np.random.randint(0, 2, len(franjas)).astype(bool)
+        horas_totales = franjas[seleccion]['horas'].sum()
+        if horas_totales <= max_horas:
+            return seleccion
+
+# 3. Función de evaluación (fitness)
+def evaluar_solucion(franjas, seleccion):
+    """Calcula la productividad total de la solución"""
+    return franjas[seleccion]['productividad'].sum()
+
+# 4. Función para verificar restricción de horas
+def es_valida(franjas, seleccion, max_horas=15):
+    """Verifica si la solución cumple con la restricción de horas"""
+    return franjas[seleccion]['horas'].sum() <= max_horas
+
+# 5. Operador de mutación
+def mutar_solucion(franjas, seleccion_actual, max_horas=15):
+    """Genera una solución vecina mutando la actual"""
+    # Hacemos una copia para no modificar la original
+    nueva_seleccion = seleccion_actual.copy()
+    
+    # Elegimos aleatoriamente si añadir, quitar o intercambiar una franja
+    opcion = random.choice(['añadir', 'quitar', 'intercambiar'])
+    
+    if opcion == 'añadir' and not all(nueva_seleccion):
+        # Añadir una franja no seleccionada
+        disponibles = np.where(~nueva_seleccion)[0]
+        idx = np.random.choice(disponibles)
+        nueva_seleccion[idx] = True
+        
+    elif opcion == 'quitar' and any(nueva_seleccion):
+        # Quitar una franja seleccionada
+        seleccionados = np.where(nueva_seleccion)[0]
+        idx = np.random.choice(seleccionados)
+        nueva_seleccion[idx] = False
+        
+    elif opcion == 'intercambiar' and any(nueva_seleccion) and not all(nueva_seleccion):
+        # Intercambiar una franja seleccionada por una no seleccionada
+        seleccionados = np.where(nueva_seleccion)[0]
+        no_seleccionados = np.where(~nueva_seleccion)[0]
+        
+        idx_quitar = np.random.choice(seleccionados)
+        idx_añadir = np.random.choice(no_seleccionados)
+        
+        nueva_seleccion[idx_quitar] = False
+        nueva_seleccion[idx_añadir] = True
+    
+    # Si la nueva solución no es válida, volvemos a la anterior
+    if not es_valida(franjas, nueva_seleccion, max_horas):
+        return seleccion_actual
+    
+    return nueva_seleccion
+
+# 6. Algoritmo de Hill Climbing
+def hill_climbing(franjas, max_iter=1000, max_horas=15):
+    """Implementa el algoritmo de Hill Climbing"""
+    # Generar solución inicial
+    mejor_seleccion = solucion_inicial(franjas, max_horas)
+    mejor_productividad = evaluar_solucion(franjas, mejor_seleccion)
+    
+    print(f"Solución inicial: Productividad = {mejor_productividad},",
+          f"Horas = {franjas[mejor_seleccion]['horas'].sum()}")
+    
+    # Bucle de optimización
+    for i in range(max_iter):
+        # Generar vecino
+        vecino_seleccion = mutar_solucion(franjas, mejor_seleccion, max_horas)
+        vecino_productividad = evaluar_solucion(franjas, vecino_seleccion)
+        
+        # Si el vecino es mejor, lo aceptamos
+        if vecino_productividad > mejor_productividad:
+            mejor_seleccion = vecino_seleccion
+            mejor_productividad = vecino_productividad
+            
+            print(f"Iteración {i+1}: Mejor solución encontrada -",
+                  f"Productividad = {mejor_productividad},",
+                  f"Horas = {franjas[mejor_seleccion]['horas'].sum()}")
+    
+    return mejor_seleccion
+
+# Ejemplo de uso
+if __name__ == "__main__":
+    # Crear franjas horarias
+    np.random.seed(42)  # Para reproducibilidad
+    franjas = crear_franjas_horarias(10)
+    print("\nFranjas horarias disponibles:")
+    print(franjas)
+    
+    # Ejecutar Hill Climbing
+    print("\nEjecutando Hill Climbing...")
+    mejor_seleccion = hill_climbing(franjas)
+    
+    # Mostrar resultados
+    print("\nMejor solución encontrada:")
+    print(franjas[mejor_seleccion])
+    print(f"\nProductividad total: {evaluar_solucion(franjas, mejor_seleccion)}")
+    print(f"Horas totales: {franjas[mejor_seleccion]['horas'].sum()}")
+</code>
+</pre>
+          </div>
+
+          <div class="next-code hidden">
+            <div class="flex items-center space-x-2 text-gray-800 mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0l-5-5m5 5l-5 5" />
+              </svg>
+              <span class="font-semibold text-lg text-gray-600">Resultado de la Ejecución</span>
+            </div>
+            <pre class="code-result overflow-x-auto">
+<code class="language-python">
+Franjas horarias disponibles:
+  franja  horas  productividad
+0     F1    1.7              6
+1     F2    2.9              5
+2     F3    2.5              2
+3     F4    2.2              8
+4     F5    1.3              6
+5     F6    1.3              2
+6     F7    1.1              5
+7     F8    2.7              1
+8     F9    2.2             10
+9    F10    2.4              6
+
+Ejecutando Hill Climbing...
+Solución inicial: Productividad = 22, Horas = 10.2
+Iteración 2: Mejor solución encontrada - Productividad = 27, Horas = 11.3
+Iteración 3: Mejor solución encontrada - Productividad = 35, Horas = 13.499999999999998
+Iteración 4: Mejor solución encontrada - Productividad = 40, Horas = 12.1
+Iteración 5: Mejor solución encontrada - Productividad = 41, Horas = 14.799999999999999
+Iteración 7: Mejor solución encontrada - Productividad = 42, Horas = 13.4
+Iteración 9: Mejor solución encontrada - Productividad = 43, Horas = 14.000000000000002
+Iteración 18: Mejor solución encontrada - Productividad = 46, Horas = 13.799999999999999
+
+Mejor solución encontrada:
+  franja  horas  productividad
+0     F1    1.7              6
+1     F2    2.9              5
+3     F4    2.2              8
+4     F5    1.3              6
+6     F7    1.1              5
+8     F9    2.2             10
+9    F10    2.4              6
+
+Productividad total: 46
+Horas totales: 13.799999999999999
+</code>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-md mt-8 relative">
+        <h2 class="font-semibold text-gray-800 my-8">
+          Selección Óptima de Menú Universitario
+        </h2>
+        <p class="text-left text-gray-600 mb-5">
+          En la cafetería universitaria hay 8 platos diferentes. Cada plato tiene un precio, una cantidad de calorías y
+          una puntuación de satisfacción (según encuestas de estudiantes). Un estudiante solo tiene S/20 para gastar por
+          día y quiere obtener el máximo nivel de satisfacción sin pasarse del presupuesto ni consumir más de 1000
+          calorías.
+        </p>
+        <p class="text-left text-gray-600 mb-8">
+          Utiliza Pandas para representar el menú y NumPy para generar combinaciones de platos. Aplica hill climbing
+          para encontrar la mejor combinación de 3 platos que maximicen la satisfacción bajo las restricciones
+          indicadas.
+        </p>
+
+        <!-- Bloque 1 -->
+        <div class="code-section">
+          <div class="mb-6 relative">
+            <div class="flex justify-between items-center mb-4">
+              <div class="flex items-center space-x-2 text-gray-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+                </svg>
+                <span class="font-semibold text-lg text-gray-600">Python</span>
+              </div>
+
+              <div class="flex space-x-4">
+                <button class="copy-code" title="Copiar código" class="text-gray-700 hover:text-gray-900">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="h-6 w-6 text-gray-600">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                  </svg>
+                </button>
+
+                <div class="copied-message hidden text-gray-500 mt-2 text-sm font-semibold">
+                  ¡Copiado!
+                </div>
+
+                <button class="run-code" title="Ejecutar código" class="text-green-800 hover:text-green-900">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="h-6 w-6 text-green-700">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <pre class="code-block overflow-x-auto">
+<code class="language-python">
+import numpy as np
+import pandas as pd
+import random
+
+# 1. Crear el dataframe con los platos del menú
+def crear_menu(n=8):
+    """Crea un dataframe con n platos aleatorios"""
+    precios = np.random.uniform(3, 10, n).round(1)  # Precios entre S/3 y S/10
+    calorias = np.random.randint(200, 600, n)  # Calorías entre 200 y 600
+    satisfaccion = np.random.randint(1, 11, n)  # Satisfacción entre 1 y 10
+    
+    menu = pd.DataFrame({
+        'plato': [f'Plato {i+1}' for i in range(n)],
+        'precio': precios,
+        'calorias': calorias,
+        'satisfaccion': satisfaccion
+    })
+    return menu
+
+# 2. Función para generar solución inicial aleatoria (3 platos)
+def solucion_inicial(menu, max_precio=20, max_calorias=1000):
+    """Genera una solución inicial aleatoria con 3 platos que cumpla las restricciones"""
+    while True:
+        indices = np.random.choice(len(menu), 3, replace=False)
+        precio_total = menu.iloc[indices]['precio'].sum()
+        calorias_total = menu.iloc[indices]['calorias'].sum()
+        
+        if precio_total <= max_precio and calorias_total <= max_calorias:
+            return indices
+
+# 3. Función de evaluación (fitness)
+def evaluar_solucion(menu, indices):
+    """Calcula la satisfacción total de la solución"""
+    return menu.iloc[indices]['satisfaccion'].sum()
+
+# 4. Función para verificar restricciones
+def es_valida(menu, indices, max_precio=20, max_calorias=1000):
+    """Verifica si la solución cumple con las restricciones"""
+    precio_total = menu.iloc[indices]['precio'].sum()
+    calorias_total = menu.iloc[indices]['calorias'].sum()
+    return (precio_total <= max_precio) and (calorias_total <= max_calorias)
+
+# 5. Operador de mutación
+def mutar_solucion(menu, indices_actuales, max_precio=20, max_calorias=1000):
+    """Genera una solución vecina mutando la actual"""
+    # Hacemos una copia para no modificar la original
+    nuevos_indices = indices_actuales.copy()
+    
+    # Seleccionamos un plato al azar para reemplazar
+    idx_a_reemplazar = np.random.choice(3)
+    
+    # Lista de platos no seleccionados
+    platos_disponibles = [i for i in range(len(menu)) if i not in nuevos_indices]
+    
+    # Intentamos encontrar un reemplazo válido
+    for _ in range(10):  # Máximo 10 intentos
+        # Elegimos un nuevo plato al azar de los disponibles
+        nuevo_plato = np.random.choice(platos_disponibles)
+        
+        # Reemplazamos temporalmente
+        nuevos_indices[idx_a_reemplazar] = nuevo_plato
+        
+        # Verificamos si es válido
+        if es_valida(menu, nuevos_indices, max_precio, max_calorias):
+            return nuevos_indices
+        
+        # Si no es válido, revertimos el cambio
+        nuevos_indices[idx_a_reemplazar] = indices_actuales[idx_a_reemplazar]
+    
+    # Si no encontramos un reemplazo válido, devolvemos la solución original
+    return indices_actuales
+
+# 6. Algoritmo de Hill Climbing
+def hill_climbing_menu(menu, max_iter=1000, max_precio=20, max_calorias=1000):
+    """Implementa el algoritmo de Hill Climbing para selección de menú"""
+    # Generar solución inicial
+    mejor_indices = solucion_inicial(menu, max_precio, max_calorias)
+    mejor_satisfaccion = evaluar_solucion(menu, mejor_indices)
+    
+    print(f"Solución inicial: Satisfacción = {mejor_satisfaccion}")
+    print(f"Platos seleccionados: {menu.iloc[mejor_indices]['plato'].values}")
+    print(f"Precio total: S/{menu.iloc[mejor_indices]['precio'].sum().round(1)}")
+    print(f"Calorías totales: {menu.iloc[mejor_indices]['calorias'].sum()}\n")
+    
+    # Bucle de optimización
+    for i in range(max_iter):
+        # Generar vecino
+        vecino_indices = mutar_solucion(menu, mejor_indices, max_precio, max_calorias)
+        vecino_satisfaccion = evaluar_solucion(menu, vecino_indices)
+        
+        # Si el vecino es mejor, lo aceptamos
+        if vecino_satisfaccion > mejor_satisfaccion:
+            mejor_indices = vecino_indices
+            mejor_satisfaccion = vecino_satisfaccion
+            
+            print(f"Iteración {i+1}: Mejor solución encontrada - Satisfacción = {mejor_satisfaccion}")
+            print(f"Platos seleccionados: {menu.iloc[mejor_indices]['plato'].values}")
+            print(f"Precio total: S/{menu.iloc[mejor_indices]['precio'].sum().round(1)}")
+            print(f"Calorías totales: {menu.iloc[mejor_indices]['calorias'].sum()}\n")
+    
+    return mejor_indices
+
+# Ejemplo de uso
+if __name__ == "__main__":
+    # Crear menú
+    np.random.seed(42)  # Para reproducibilidad
+    menu = crear_menu(8)
+    print("\nMenú disponible:")
+    print(menu)
+    
+    # Ejecutar Hill Climbing
+    print("\nEjecutando Hill Climbing para selección de menú...")
+    mejor_indices = hill_climbing_menu(menu)
+    
+    # Mostrar resultados finales
+    print("\nMejor combinación encontrada:")
+    print(menu.iloc[mejor_indices])
+    print(f"\nSatisfacción total: {evaluar_solucion(menu, mejor_indices)}")
+    print(f"Precio total: S/{menu.iloc[mejor_indices]['precio'].sum().round(1)}")
+    print(f"Calorías totales: {menu.iloc[mejor_indices]['calorias'].sum()}")
+</code>
+</pre>
+          </div>
+
+          <div class="next-code hidden">
+            <div class="flex items-center space-x-2 text-gray-800 mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0l-5-5m5 5l-5 5" />
+              </svg>
+              <span class="font-semibold text-lg text-gray-600">Resultado de la Ejecución</span>
+            </div>
+            <pre class="code-result overflow-x-auto">
+<code class="language-python">
+Menú disponible:
+     plato  precio  calorias  satisfaccion
+0  Plato 1     5.6       299             6
+1  Plato 2     9.7       559             2
+2  Plato 3     8.1       351             5
+3  Plato 4     7.2       330             1
+4  Plato 5     4.1       349            10
+5  Plato 6     4.1       508             6
+6  Plato 7     3.4       457             9
+7  Plato 8     9.1       543             1
+
+Ejecutando Hill Climbing para selección de menú...
+Solución inicial: Satisfacción = 21
+Platos seleccionados: ['Plato 3' 'Plato 1' 'Plato 5']
+Precio total: S/17.8
+Calorías totales: 999
+
+
+Mejor combinación encontrada:
+     plato  precio  calorias  satisfaccion
+2  Plato 3     8.1       351             5
+0  Plato 1     5.6       299             6
+4  Plato 5     4.1       349            10
+
+Satisfacción total: 21
+Precio total: S/17.8
+Calorías totales: 999
+</code>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-md mt-8 relative">
+        <h2 class="font-semibold text-gray-800 my-8">
+          Selección de Cursos Electivos
+        </h2>
+        <p class="text-left text-gray-600 mb-5">
+          Un estudiante debe elegir 3 de entre 10 cursos electivos posibles. Cada curso tiene una carga horaria semanal,
+          un nivel de interés personal (del 1 al 10), y una calificación histórica promedio (como estimador de
+          facilidad).
+        </p>
+        <p class="text-left text-gray-600 mb-8">
+          El objetivo es encontrar una combinación de cursos que maximice el interés total del estudiante, siempre que
+          la carga horaria combinada no exceda 12 horas semanales. Usa Pandas para estructurar los datos de los cursos y
+          NumPy para buscar combinaciones óptimas usando un enfoque de hill climbing.
+        </p>
+
+        <!-- Bloque 1 -->
+        <div class="code-section">
+          <div class="mb-6 relative">
+            <div class="flex justify-between items-center mb-4">
+              <div class="flex items-center space-x-2 text-gray-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+                </svg>
+                <span class="font-semibold text-lg text-gray-600">Python</span>
+              </div>
+
+              <div class="flex space-x-4">
+                <button class="copy-code" title="Copiar código" class="text-gray-700 hover:text-gray-900">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="h-6 w-6 text-gray-600">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                  </svg>
+                </button>
+
+                <div class="copied-message hidden text-gray-500 mt-2 text-sm font-semibold">
+                  ¡Copiado!
+                </div>
+
+                <button class="run-code" title="Ejecutar código" class="text-green-800 hover:text-green-900">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="h-6 w-6 text-green-700">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <pre class="code-block overflow-x-auto">
+<code class="language-python">
+import numpy as np
+import pandas as pd
+import random
+
+# 1. Crear el dataframe con los cursos electivos
+def crear_cursos(n=10):
+    """Crea un dataframe con n cursos electivos aleatorios"""
+    horas = np.random.randint(2, 6, n)  # Carga horaria entre 2 y 5 horas
+    interes = np.random.randint(1, 11, n)  # Nivel de interés entre 1 y 10
+    facilidad = np.random.uniform(10, 20, n).round(1)  # Calificación histórica entre 10 y 20
+    
+    cursos = pd.DataFrame({
+        'curso': [f'Curso {i+1}' for i in range(n)],
+        'horas': horas,
+        'interes': interes,
+        'facilidad': facilidad
+    })
+    return cursos
+
+# 2. Función para generar solución inicial aleatoria (3 cursos)
+def solucion_inicial(cursos, max_horas=12):
+    """Genera una solución inicial aleatoria con 3 cursos que cumpla las restricciones"""
+    while True:
+        indices = np.random.choice(len(cursos), 3, replace=False)
+        horas_totales = cursos.iloc[indices]['horas'].sum()
+        
+        if horas_totales <= max_horas:
+            return indices
+
+# 3. Función de evaluación (fitness)
+def evaluar_solucion(cursos, indices):
+    """Calcula el interés total de la solución"""
+    return cursos.iloc[indices]['interes'].sum()
+
+# 4. Función para verificar restricción de horas
+def es_valida(cursos, indices, max_horas=12):
+    """Verifica si la solución cumple con la restricción de horas"""
+    return cursos.iloc[indices]['horas'].sum() <= max_horas
+
+# 5. Operador de mutación mejorado
+def mutar_solucion(cursos, indices_actuales, max_horas=12):
+    """Genera una solución vecina mutando la actual con estrategias diversas"""
+    nuevos_indices = indices_actuales.copy()
+    
+    # Seleccionar estrategia de mutación aleatoria
+    estrategia = random.choice(['reemplazar', 'intercambiar', 'optimizar'])
+    
+    if estrategia == 'reemplazar':
+        # Reemplazar un curso aleatorio
+        idx_reemplazar = random.choice(range(3))
+        cursos_disponibles = [i for i in range(len(cursos)) if i not in nuevos_indices]
+        
+        for _ in range(10):  # Intentos máximos
+            nuevo_curso = random.choice(cursos_disponibles)
+            nuevos_indices[idx_reemplazar] = nuevo_curso
+            
+            if es_valida(cursos, nuevos_indices, max_horas):
+                return nuevos_indices
+            nuevos_indices[idx_reemplazar] = indices_actuales[idx_reemplazar]
+    
+    elif estrategia == 'intercambiar':
+        # Intercambiar dos cursos en la selección
+        idx1, idx2 = random.sample(range(3), 2)
+        nuevos_indices[idx1], nuevos_indices[idx2] = nuevos_indices[idx2], nuevos_indices[idx1]
+        
+        if es_valida(cursos, nuevos_indices, max_horas):
+            return nuevos_indices
+        return indices_actuales
+    
+    elif estrategia == 'optimizar':
+        # Intentar reemplazar el curso con menor interés por uno mejor
+        cursos_actuales = cursos.iloc[indices_actuales]
+        idx_menor_interes = cursos_actuales['interes'].idxmin()
+        posicion = np.where(indices_actuales == idx_menor_interes)[0][0]
+        
+        # Buscar cursos con mayor interés que puedan reemplazarlo
+        posibles_reemplazos = cursos[
+            (cursos['interes'] > cursos.loc[idx_menor_interes, 'interes']) & 
+            (~cursos.index.isin(indices_actuales))]
+        posibles_reemplazos = posibles_reemplazos.sort_values('interes', ascending=False)
+        
+        for _, nuevo_curso in posibles_reemplazos.iterrows():
+            nuevos_indices[posicion] = nuevo_curso.name
+            if es_valida(cursos, nuevos_indices, max_horas):
+                return nuevos_indices
+            nuevos_indices[posicion] = indices_actuales[posicion]
+    
+    return indices_actuales
+
+# 6. Algoritmo de Hill Climbing mejorado
+def hill_climbing_cursos(cursos, max_iter=1000, max_horas=12):
+    """Implementa el algoritmo de Hill Climbing para selección de cursos"""
+    # Generar solución inicial
+    mejor_indices = solucion_inicial(cursos, max_horas)
+    mejor_interes = evaluar_solucion(cursos, mejor_indices)
+    
+    print("=== Solución inicial ===")
+    print(cursos.iloc[mejor_indices])
+    print(f"\nInterés total: {mejor_interes}")
+    print(f"Horas totales: {cursos.iloc[mejor_indices]['horas'].sum()}\n")
+    
+    # Bucle de optimización con reinicios aleatorios
+    for i in range(max_iter):
+        vecino_indices = mutar_solucion(cursos, mejor_indices, max_horas)
+        vecino_interes = evaluar_solucion(cursos, vecino_indices)
+        
+        # Criterio de aceptación
+        if vecino_interes > mejor_interes or (
+            vecino_interes == mejor_interes and 
+            cursos.iloc[vecino_indices]['horas'].sum() < cursos.iloc[mejor_indices]['horas'].sum()
+        ):
+            mejor_indices = vecino_indices
+            mejor_interes = vecino_interes
+            
+            print(f"=== Iteración {i+1}: Mejor solución encontrada ===")
+            print(cursos.iloc[mejor_indices])
+            print(f"\nInterés total: {mejor_interes}")
+            print(f"Horas totales: {cursos.iloc[mejor_indices]['horas'].sum()}\n")
+    
+    return mejor_indices
+
+# Ejemplo de uso
+if __name__ == "__main__":
+    # Crear cursos electivos
+    np.random.seed(42)  # Para reproducibilidad
+    cursos = crear_cursos(10)
+    print("\nCursos electivos disponibles:")
+    print(cursos)
+    
+    # Ejecutar Hill Climbing
+    print("\n=== Ejecutando Hill Climbing para selección de cursos ===")
+    mejor_indices = hill_climbing_cursos(cursos)
+    
+    # Mostrar resultados finales
+    print("\n=== Mejor combinación encontrada ===")
+    print(cursos.iloc[mejor_indices])
+    print(f"\nInterés total: {evaluar_solucion(cursos, mejor_indices)}")
+    print(f"Horas totales: {cursos.iloc[mejor_indices]['horas'].sum()}")
+    print(f"Facilidad promedio: {cursos.iloc[mejor_indices]['facilidad'].mean().round(1)}")
+</code>
+</pre>
+          </div>
+
+          <div class="next-code hidden">
+            <div class="flex items-center space-x-2 text-gray-800 mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0l-5-5m5 5l-5 5" />
+              </svg>
+              <span class="font-semibold text-lg text-gray-600">Resultado de la Ejecución</span>
+            </div>
+            <pre class="code-result overflow-x-auto">
+<code class="language-python">
+Cursos electivos disponibles:
+      curso  horas  interes  facilidad
+0   Curso 1      4        3       19.7
+1   Curso 2      5        7       18.3
+2   Curso 3      2        8       12.1
+3   Curso 4      4        5       11.8
+4   Curso 5      4        4       11.8
+5   Curso 6      5        8       13.0
+6   Curso 7      2        8       15.2
+7   Curso 8      2        3       14.3
+8   Curso 9      4        6       12.9
+9  Curso 10      3        5       16.1
+
+=== Ejecutando Hill Climbing para selección de cursos ===
+=== Solución inicial ===
+     curso  horas  interes  facilidad
+8  Curso 9      4        6       12.9
+2  Curso 3      2        8       12.1
+5  Curso 6      5        8       13.0
+
+Interés total: 22
+Horas totales: 11
+
+=== Iteración 1: Mejor solución encontrada ===
+     curso  horas  interes  facilidad
+6  Curso 7      2        8       15.2
+2  Curso 3      2        8       12.1
+5  Curso 6      5        8       13.0
+
+Interés total: 24
+Horas totales: 9
+
+
+=== Mejor combinación encontrada ===
+     curso  horas  interes  facilidad
+6  Curso 7      2        8       15.2
+2  Curso 3      2        8       12.1
+5  Curso 6      5        8       13.0
+
+Interés total: 24
+Horas totales: 9
+Facilidad promedio: 13.4
+</code>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="py-10 mt-5 text-center">
+        <a href="index.html"
+          class="bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-600 transition duration-300">
+          Regresar
+        </a>
+      </div>
+    </div>
+
+
+  </main>
+
+  <footer class="sticky bottom-0 z-50 text-center py-2 text-gray-500 text-sm backdrop-blur-sm bg-white/50 border-t">
+    <p>Autores: Osorio, Sanchez, Vasquez</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+  <script>
+    Fancybox.bind("[data-fancybox]", {
+      infinite: true
+    });
+  </script>
+  <script>
+    // Función para copiar código (para todos los bloques)
+    document.querySelectorAll('.copy-code').forEach(button => {
+      button.addEventListener('click', function () {
+        const codeSection = this.closest('.code-section');
+        const code = codeSection.querySelector('.code-block').innerText;
+
+        navigator.clipboard.writeText(code).then(() => {
+          const message = this.nextElementSibling; // El mensaje debe estar justo después del botón
+          message.classList.remove('hidden');
+          setTimeout(() => message.classList.add('hidden'), 2000);
+        });
+      });
+    });
+
+    // Función para ejecución simulada (para todos los bloques)
+    document.querySelectorAll('.run-code').forEach(button => {
+      button.addEventListener('click', function () {
+        const codeSection = this.closest('.code-section');
+        const resultDiv = codeSection.querySelector('.next-code');
+
+        resultDiv.classList.toggle('hidden');
+        if (!resultDiv.classList.contains('hidden')) {
+          resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

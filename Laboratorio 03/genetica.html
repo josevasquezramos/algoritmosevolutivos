@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algoritmos Evolutivos</title>
+  <link rel="icon" href="img/favicon.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+  <header class="sticky top-0 z-50 w-full py-4 backdrop-blur-md bg-white/80 shadow">
+    <a class="container mx-auto px-4 flex items-center" href="index.html">
+      <div class="mr-4">
+        <img src="img/logo.png" alt="Logo UNS" class="h-20 mr-5" />
+      </div>
+      <div class="text-left">
+        <h1 class="text-lg md:text-xl font-semibold text-gray-700 mb-1">
+          <span class="md:hidden">UNS</span>
+          <span class="hidden md:inline">UNIVERSIDAD NACIONAL DEL SANTA</span>
+        </h1>
+        <h2 class="text-base md:text-lg font-medium text-gray-600">
+          FACULTAD DE INGENIERÍA
+        </h2>
+        <h3 class="text-sm md:text-base text-gray-500">
+          <span class="md:hidden">EPISI</span>
+          <span class="hidden md:inline">Escuela Profesional de Ingeniería de Sistemas e Informática</span>
+        </h3>
+      </div>
+    </a>
+  </header>
+
+  <main class="flex-grow flex items-center justify-center px-4 py-4">
+    <div class="w-full max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-gray-800 my-12 text-center">
+        Algoritmos de Evolución Genética
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-2xl font-semibold text-gray-800 my-8">
+            ¿Qué es un Algoritmo Genético?
+          </h2>
+          <p class="text-gray-700 mb-8">
+            Los algoritmos genéticos son métodos de búsqueda y optimización
+            inspirados en el proceso de evolución natural. Se utilizan para
+            encontrar soluciones aproximadas a problemas complejos que son
+            difíciles de resolver mediante otros métodos.
+          </p>
+          <div class="flex justify-center items-center mt-4">
+            <a href="img/algoritmos_geneticos.jpg" data-fancybox="gallery" data-caption="Infografía Algoritmo Genético">
+              <img src="img/algoritmos_geneticos.jpg" alt="Infografía Algoritmo Genético"
+                class="rounded-md shadow-lg w-full max-w-md" />
+            </a>
+          </div>
+          <div class="flex justify-center items-center mt-4">
+            <a href="img/algoritmo_genetico2.png" data-fancybox="gallery" data-caption="Infografía Algoritmo Genético">
+              <img src="img/algoritmo_genetico2.png" alt="Infografía Algoritmo Genético"
+                class="rounded-md shadow-lg w-full max-w-md" />
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-2xl font-semibold text-gray-800 my-8">
+            Proceso del Algoritmo Genético
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:bg-blue-100 transition duration-300">
+              <h3 class="text-xl font-semibold text-blue-700 mb-4">
+                1. Selección
+              </h3>
+              <p class="text-gray-700">
+                Selección de los mejores individuos de una población para
+                reproducirse.
+              </p>
+            </div>
+            <div class="bg-green-50 p-6 rounded-lg shadow-md hover:bg-green-100 transition duration-300">
+              <h3 class="text-xl font-semibold text-green-700 mb-4">
+                2. Cruzamiento
+              </h3>
+              <p class="text-gray-700">
+                Combinación de los genomas de los individuos seleccionados
+                para formar una nueva generación.
+              </p>
+            </div>
+
+            <div class="bg-yellow-50 p-6 rounded-lg shadow-md hover:bg-yellow-100 transition duration-300">
+              <h3 class="text-xl font-semibold text-yellow-700 mb-4">
+                3. Mutación
+              </h3>
+              <p class="text-gray-700">
+                Introducción de pequeñas modificaciones en los individuos para
+                mantener la diversidad genética.
+              </p>
+            </div>
+
+            <div class="bg-purple-50 p-6 rounded-lg shadow-md hover:bg-purple-100 transition duration-300">
+              <h3 class="text-xl font-semibold text-purple-700 mb-4">
+                4. Evaluación
+              </h3>
+              <p class="text-gray-700">
+                Evaluación de la calidad de los individuos con una función de
+                aptitud.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-md mt-8 relative">
+        <div class="mt-8">
+          <h3 class="text-2xl font-semibold text-gray-800 my-8">
+            Aplicaciones Comunes
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="bg-green-50 p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+              <h3 class="text-lg font-semibold text-green-700 mb-4">
+                Optimización de Rutas
+              </h3>
+              <p class="text-gray-600">
+                Problemas de recorrido como el problema del vendedor viajero
+                (TSP).
+              </p>
+            </div>
+            <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+              <h4 class="text-lg font-semibold text-blue-700 mb-4">
+                Redes Neuronales
+              </h4>
+              <p class="text-gray-600">
+                Diseño de redes neuronales artificiales para clasificación y
+                predicción.
+              </p>
+            </div>
+            <div class="bg-yellow-50 p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+              <h4 class="text-lg font-semibold text-yellow-700 mb-4">
+                Optimización de Procesos
+              </h4>
+              <p class="text-gray-600">
+                Optimización de recursos y procesos en industrias y
+                manufactura.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-md mt-8 relative">
+        <h2 class="text-2xl font-semibold text-gray-800 my-8">
+          Ejemplo Python: Algoritmo Genético
+        </h2>
+        <p class="text-left text-gray-600 mb-8">
+          Usaremos un problema clásico en los algoritmos genéticos llamado
+          "One Max": Se trata de una cadena de 0's y 1's, y el objetivo es
+          encontrar la cadena con la mayor cantidad de 1's. Utilizaremos DEAP
+          para crear la población, la selección, el cruzamiento, la mutación y
+          la evaluación.
+        </p>
+        <div class="mb-6 relative">
+          <div class="flex justify-between items-center mb-4">
+            <div class="flex items-center space-x-2 text-gray-800">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+              </svg>
+              <span class="font-semibold text-lg text-gray-600">Python</span>
+            </div>
+
+            <div class="flex space-x-4">
+              <button id="copy-code" title="Copiar código" class="text-gray-700 hover:text-gray-900">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="h-6 w-6 text-gray-600">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                </svg>
+              </button>
+
+              <div id="copied-message" class="hidden text-gray-500 mt-2 text-sm font-semibold">
+                ¡Copiado!
+              </div>
+
+              <button id="run-code" title="Ejecutar código" class="text-green-800 hover:text-green-900">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="h-6 w-6 text-green-700">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <pre id="code-block-1" class="overflow-x-auto">
+                    <code class="language-python">
+import random
+from deap import base, creator, tools
+
+# Crear el problema como un individuo con valor de aptitud
+creator.create("FitnessMax", base.Fitness, weights=(1.0,))  # Maximizar
+creator.create("Individual", list, fitness=creator.FitnessMax)
+
+# Función para crear un individuo (un individuo es una lista de 0's y 1's)
+def create_individual():
+return [random.randint(0, 1) for _ in range(10)]  # Longitud de 10 bits
+
+# Función de evaluación (suma de los 1's)
+def evaluate(individual):
+return sum(individual),
+
+# Crear el contenedor de herramientas de DEAP
+toolbox = base.Toolbox()
+toolbox.register("individual", tools.initIterate, creator.Individual, create_individual)
+toolbox.register("population", tools.initRepeat, list, toolbox.individual)
+toolbox.register("mate", tools.cxTwoPoint)  # Cruzamiento de dos puntos
+toolbox.register("mutate", tools.mutFlipBit, indpb=0.2)  # Mutación de bit con probabilidad de 0.2
+toolbox.register("select", tools.selTournament, tournsize=3)  # Selección por torneo
+toolbox.register("evaluate", evaluate)
+
+# Crear la población inicial
+population = toolbox.population(n=50)  # Tamaño de la población 50
+
+# Parámetros del algoritmo genético
+generations = 30
+cx_prob = 0.7  # Probabilidad de cruzamiento
+mut_prob = 0.2  # Probabilidad de mutación
+
+# Ejecución del algoritmo genético
+for gen in range(generations):
+# Selección de los mejores individuos (tamaño de torneo 3)
+selected_individuals = toolbox.select(population, len(population))
+
+# Crear los hijos a partir de la selección
+offspring = list(map(toolbox.clone, selected_individuals))
+
+# Cruzamiento de los hijos
+for child1, child2 in zip(offspring[::2], offspring[1::2]):
+    if random.random() < cx_prob:
+        toolbox.mate(child1, child2)
+        del child1.fitness.values
+        del child2.fitness.values
+
+# Mutación de los hijos
+for mutant in offspring:
+    if random.random() < mut_prob:
+        toolbox.mutate(mutant)
+        del mutant.fitness.values
+
+# Evaluación de los hijos no evaluados
+for ind in offspring:
+    if not ind.fitness.valid:
+        ind.fitness.values = toolbox.evaluate(ind)
+
+# Reemplazar la población actual con los hijos
+population[:] = offspring
+
+# Imprimir la mejor solución de cada generación
+top_individual = tools.selBest(population, 1)[0]
+print(f"Generación {gen}: Mejor individuo {top_individual}, Aptitud: {top_individual.fitness.values[0]}")
+
+# Imprimir el mejor individuo final
+best_individual = tools.selBest(population, 1)[0]
+print(f"Mejor individuo final: {best_individual}, Aptitud final: {best_individual.fitness.values[0]}")
+
+                    </code>
+            </pre>
+        </div>
+
+        <div id="next-code" class="hidden">
+          <div class="flex items-center space-x-2 text-gray-800 mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0l-5-5m5 5l-5 5" />
+            </svg>
+            <span class="font-semibold text-lg text-gray-600">Resultado de la Ejecución</span>
+          </div>
+          <pre id="code-block-2" class="overflow-x-auto">
+                    <code class="language-python">
+Generación 0: Mejor individuo [1, 1, 1, 0, 1, 1, 1, 1, 0, 0], Aptitud: 7.0
+Generación 1: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 0, 0], Aptitud: 8.0
+Generación 2: Mejor individuo [1, 0, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 9.0
+Generación 3: Mejor individuo [1, 0, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 9.0
+Generación 4: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 5: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 6: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 7: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 8: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 9: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 10: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 11: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 12: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 13: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 14: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 15: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 16: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 17: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 18: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 19: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 20: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 21: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 22: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 23: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 24: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 25: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 26: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 27: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 28: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Generación 29: Mejor individuo [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud: 10.0
+Mejor individuo final: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], Aptitud final: 10.0
+                    </code>
+            </pre>
+        </div>
+      </div>
+
+      <div class="py-10 mt-5 text-center">
+        <a href="index.html"
+          class="bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-600 transition duration-300">
+          Regresar
+        </a>
+      </div>
+    </div>
+
+
+  </main>
+
+  <footer class="sticky bottom-0 z-50 text-center py-2 text-gray-500 text-sm backdrop-blur-sm bg-white/50 border-t">
+    <p>Autores: Osorio, Sanchez, Vasquez</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+  <script>
+    Fancybox.bind("[data-fancybox]", {
+      infinite: true
+    });
+  </script>
+  <script>
+    // Función para copiar el código al portapapeles
+    document
+      .getElementById("copy-code")
+      .addEventListener("click", function () {
+        const code = document.getElementById("code-block-1").innerText;
+        navigator.clipboard.writeText(code).then(function () {
+          // Mostrar el mensaje de "copiado" debajo del botón
+          const message = document.getElementById("copied-message");
+          message.classList.remove("hidden");
+          setTimeout(() => {
+            message.classList.add("hidden");
+          }, 2000); // El mensaje se oculta después de 2 segundos
+        });
+      });
+
+    // Función para ejecutar el código (simulado)
+    // Función para ejecutar el código (simulado) y hacer scroll
+    document.getElementById("run-code").addEventListener("click", function () {
+      const nextCodeContainer = document.getElementById("next-code");
+
+      // Mostrar/ocultar el contenedor de resultados
+      if (nextCodeContainer.classList.contains("hidden")) {
+        nextCodeContainer.classList.remove("hidden");
+
+        // Hacer scroll suave hasta el contenedor de resultados
+        nextCodeContainer.scrollIntoView({ behavior: "smooth" });
+      } else {
+        nextCodeContainer.classList.add("hidden");
+      }
+    });
+  </script>
+</body>
+
+</html>

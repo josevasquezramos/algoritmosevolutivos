@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algoritmos Evolutivos</title>
+  <link rel="icon" href="img/favicon.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <header class="sticky top-0 z-50 w-full py-4 backdrop-blur-md bg-white/80 shadow">
+    <a class="container mx-auto px-4 flex items-center" href="index.html">
+      <div class="mr-4">
+        <img src="img/logo.png" alt="Logo UNS" class="h-20 mr-5" />
+      </div>
+      <div class="text-left">
+        <h1 class="text-lg md:text-xl font-semibold text-gray-700 mb-1">
+          <span class="md:hidden">UNS</span>
+          <span class="hidden md:inline">UNIVERSIDAD NACIONAL DEL SANTA</span>
+        </h1>
+        <h2 class="text-base md:text-lg font-medium text-gray-600">
+          FACULTAD DE INGENIERÍA
+        </h2>
+        <h3 class="text-sm md:text-base text-gray-500">
+          <span class="md:hidden">EPISI</span>
+          <span class="hidden md:inline">Escuela Profesional de Ingeniería de Sistemas e Informática</span>
+        </h3>
+      </div>
+    </a>
+  </header>
+
+  <main class="flex-grow flex items-center justify-center px-4 py-4">
+    <div class="text-center">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8">Algoritmos Evolutivos y de Aprendizaje</h1>
+
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+
+        <a href="hillclimbing.html"
+          class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition text-left border border-gray-200 hover:bg-blue-50 flex items-start gap-4">
+          <i class="fas fa-mountain text-blue-600 text-2xl mt-1"></i>
+          <div>
+            <h2 class="text-xl font-semibold text-blue-600 mb-1">Hill Climbing</h2>
+            <p class="text-gray-600 text-sm">Algoritmo de búsqueda local que mejora iterativamente una
+              solución
+              hasta alcanzar un óptimo local.</p>
+          </div>
+        </a>
+
+        <a href="genetica.html"
+          class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition text-left border border-gray-200 hover:bg-green-50 flex items-start gap-4">
+          <i class="fas fa-dna text-green-600 text-2xl mt-1"></i>
+          <div>
+            <h2 class="text-xl font-semibold text-green-600 mb-1">Algoritmo de Evolución Genética</h2>
+            <p class="text-gray-600 text-sm">Inspirado en la evolución biológica, utiliza selección, cruce y
+              mutación para encontrar soluciones óptimas.</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="sticky bottom-0 z-50 text-center py-2 text-gray-500 text-sm backdrop-blur-sm bg-white/50 border-t">
+    <p>Autores: Osorio, Sanchez, Vasquez</p>
+  </footer>
+
+</body>
+
+</html>
